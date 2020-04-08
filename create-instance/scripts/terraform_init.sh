@@ -4,7 +4,8 @@
 # Initialize Terraform with this script
 # See for details: https://github.com/hashicorp/terraform/issues/13022#issuecomment-294262392
 
-# Put actual values to export
+# First, apply `create-remote-backend-s3-bucket` terraform
+# Then put actual values to export here
 export TF_VAR_profile=
 export TF_VAR_region=
 export TF_VAR_bucket=
