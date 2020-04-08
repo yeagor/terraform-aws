@@ -1,0 +1,11 @@
+profile = "aws-tests"
+region = "us-east-1"
+bucket="terraform-remote-backend-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+env = "dev"
+cidr_block = "NNN.NN.N.N/16"
+ami_jenkins = "ami-..."
+instance_type = "t2.micro"
+pub_keys = [
+  "ssh rsa ... 1",
+  "ssh rsa ... 2"
+]
