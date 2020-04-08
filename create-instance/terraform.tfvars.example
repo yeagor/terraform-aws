@@ -9,3 +9,4 @@ pub_keys = [
   "ssh rsa ... 1",
   "ssh rsa ... 2"
 ]
+accout_to_share_ami = "123456789012"

@@ -23,3 +23,6 @@ variable instance_type {
 variable pub_keys {
   description = "Public keys used for ssh access to Jenkins instance"
 }
+variable accout_to_share_ami {
+  description = "AWS Account to share AMI launch permissions with"
+}

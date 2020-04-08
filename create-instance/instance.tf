@@ -29,3 +29,9 @@ resource "aws_instance" "jenkins" {
 
   user_data = local.pub_keys_script
 }
+
+// ------------------------------------------------------------------------------------------- aws_ami_launch_permission
+resource "aws_ami_launch_permission" "example" {
+  image_id   = var.ami_jenkins
+  account_id = var.accout_to_share_ami
+}
