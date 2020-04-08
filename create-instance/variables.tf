@@ -11,5 +11,15 @@ variable env {
   description = "Environment name"
 }
 variable cidr_block {
-  description = "Virtual Private Cloud. Supposed to be imported"
+  description = "Virtual Private Cloud CIDR. Supposed to be imported"
+}
+variable ami_jenkins {
+  description = "Jenkins Amazon Machine Image ID"
+}
+variable instance_type {
+  description = "Jenkins instance type"
+  default     = "t2.micro"
+}
+variable pub_keys {
+  description = "Public keys used for ssh access to Jenkins instance"
 }

@@ -1,29 +1,51 @@
+// ------------------------------------------------------------------------------------------- provider
 provider "aws" {
   profile = var.profile
-  region = var.region
+  region  = var.region
 }
 
-/*
-  Use script to init Terraform: files/terraform_init.sh
-  See for details: https://github.com/hashicorp/terraform/issues/13022#issuecomment-294262392
-*/
-terraform {
-  backend s3 {}
-}
+// ------------------------------------------------------------------------------------------- security group
+resource "aws_security_group" "allow_ssh" {
+  name        = "allow ssh jenkins"
+  description = "Allow SSH access to instance"
+  vpc_id      = aws_vpc.vpc.id
 
-data "terraform_remote_state" "state" {
-  backend = "s3"
-  config = {
-    profile = var.profile
-    region = var.region
-    bucket = var.bucket
-    key = "${var.env}/state.tfstate"
-    # encrypt = true #AES-256
+  ingress {
+    from_port        = 22
+    to_port          = 22
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
+  egress {
+    from_port        = 0
+    protocol         = "-1"
+    to_port          = 0
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
   }
 }
 
-# Need to imported
-resource "aws_vpc" "vpc" {
-  cidr_block = var.cidr_block
-}
+// ------------------------------------------------------------------------------------------- security group
+resource "aws_security_group" "allow_jenkins" {
+  name        = "allow 8080 jenkins"
+  description = "Allow access from the outter to Jenkins on 8080"
+  vpc_id      = aws_vpc.vpc.id
 
+  ingress {
+    from_port        = 8080
+    to_port          = 8080
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
+  egress {
+    from_port        = 0
+    protocol         = "-1"
+    to_port          = 0
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+}
