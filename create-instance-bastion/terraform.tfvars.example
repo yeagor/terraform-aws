@@ -1,0 +1,15 @@
+profile = "aws-tests"
+region = "us-east-1"
+project = "project"
+env = "dev"
+instance_type = "t2.micro"
+vpc_id = "vpc-..."
+subnet_id = "subnet-..."
+user = user
+pub_keys = [
+  "ssh rsa ... 1",
+  "ssh rsa ... 2"
+]
+host = 127.0.0.1
+port = 8080
+key_name = key
