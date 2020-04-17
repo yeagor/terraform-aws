@@ -1,7 +1,8 @@
-//output "script" {
-//  value = data.template_file.script.rendered
-//}
-//
+output "script_user_data" {
+  value = {
+    rendered: data.template_file.script_user_data.rendered
+  }
+}
 
 output "instance" {
   value = [

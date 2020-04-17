@@ -1,5 +1,5 @@
 // ------------------------------------------------------------------------------------------- sript for pubkeys adding
-data "template_file" "script" {
+data "template_file" "script_user_data" {
   template = file("${path.module}/files/add_allowed_pub_keys.sh.tpl")
   vars = {
     user = var.user
@@ -42,5 +42,5 @@ resource "aws_instance" "bastion" {
   ]
 
   key_name = var.key_name
-  user_data = data.template_file.script.rendered
+  user_data = data.template_file.script_user_data.rendered
 }
